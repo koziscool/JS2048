@@ -22,7 +22,7 @@ var Two048view = {
         var tile = Two048Controller.model.getTile( i, j);
         var $tileDiv = $("<div><div class='tile-value'>" + tile.value + "</div></div>");
         $tileDiv.addClass('tile');
-        $tileDiv.addClass(tile.value + '-tile');
+        $tileDiv.addClass( 'tile-' + tile.value);
 
         $tileDiv.attr( 'row', i );
         $tileDiv.attr( 'col', j );

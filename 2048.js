@@ -48,7 +48,8 @@ var Two048Model = {
 
     for( var i = 0; i < this.initialSquares; i++ ){
       var empties = this.getEmptySquares();
-      this.randomNewValue();
+      var randomEmpty = empties[ Math.floor(Math.random() * empties.length) ];
+      randomEmpty.value = this.randomNewValue();
     }    
   },
 
@@ -72,6 +73,9 @@ var Two048Model = {
     this.value = value;
   },
 
+  setDirection: function( direction ) {
+    
+  }
 
 };
 
@@ -90,8 +94,34 @@ var Two048Controller = {
     this.view.init();
   },
 
+  setDirection: function(direction) {
+    model.setDirection(direction);
+    view.render();
+  },
+
 };
 
 $(document).ready(function() {
   Two048Controller.init();
+
+  window.addEventListener('keydown', function(event) {
+    switch (event.keyCode) {
+      case 37: // Left
+        Two048Controller.setDirection('left');
+        break;
+
+      case 38: // Up
+        Two048Controller.setDirection('up');
+        break;
+
+      case 39: // Right
+        Two048Controller.setDirection('right');
+        break;
+
+      case 40: // Down
+        Two048Controller.setDirection('down');
+        break;
+    }
+  }, false);
+
 });

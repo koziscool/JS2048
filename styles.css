@@ -17,73 +17,71 @@
   line-height: 90px;
 }
 
-.blank-tile { 
+.tile-blank { 
   background-color: lightyellow;
 }
 
-.2-tile { 
-  background-color: lightorange;
+.tile-2 { 
+  background-color: orange;
 }
 
 
-.4-tile { 
+.tile-4 { 
   background-color: lightgreen;
 }
 
 
-.8-tile { 
+.tile-8 { 
   background-color: lightblue;
 }
 
 
-.16-tile { 
+.tile-16 { 
   background-color: lightgreen;
 }
 
 
-.32-tile { 
+.tile-32 { 
   background-color: lightgray;
 }
 
-.64-tile { 
+.tile-64 { 
   background-color: lightpurple;
 }
 
-.128-tile { 
+.tile-128 { 
   background-color: lightmaroon;
 }
 
-.128-tile { 
+.tile-256 { 
   background-color: lightyellow;
 }
 
-.256-tile { 
+.tile-512 { 
   background-color: lightyellow;
 }
 
-.512-tile { 
+.tile-1024 { 
   background-color: lightyellow;
 }
 
-.1024-tile { 
+.tile-2048 { 
   background-color: lightyellow;
 }
 
-.2048-tile { 
+.tile-4096 { 
   background-color: lightyellow;
 }
 
-.4096-tile { 
+.tile-8192 { 
   background-color: lightyellow;
 }
 
-.8192-tile { 
+.tile-16384 { 
   background-color: lightyellow;
 }
 
-.16384-tile { 
-  background-color: lightyellow;
-}
+
 
 
 
