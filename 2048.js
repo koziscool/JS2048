@@ -54,7 +54,6 @@ var Two048Model = {
   },
 
   getEmptySquares: function() {
-
     emptySquares = [];
     for( var i = 0; i < this.numRows; i++ ){
       for( var j = 0; j < this.numCols; j++ ) {
@@ -73,9 +72,67 @@ var Two048Model = {
     this.value = value;
   },
 
-  setDirection: function( direction ) {
-    
-  }
+  addNewSquare: function() {
+    var empties = this.getEmptySquares();
+    var randomEmpty = empties[ Math.floor(Math.random() * empties.length) ];
+    randomEmpty.value = this.randomNewValue();
+  },
+
+  moveUp: function( ) {
+  },
+
+  moveDown: function( ) {
+  },
+
+  moveLeft: function( ) {
+    for (var row = 0; row < this.numRows; row++ ){
+      values = [];
+      for (var col = 0; col < this.numCols; col++ ){
+        values.push( this.getTile( row,  col).value );
+      }
+      values = this.stripBlanks( values )
+      console.log(values);
+      this.collapseArray( values )
+      console.log(values);
+    }
+  },
+
+  moveRight: function( ) {
+  },
+
+////////
+
+  notABlank: function( elt ) { 
+    var retVal = ( elt != 'blank');
+    return retVal; 
+  },
+
+  stripBlanks: function( arr ) {
+    retArray = []
+    arr.forEach( function(elt) {
+      if (elt !== 'blank') {
+        retArray.push(elt)
+      }
+    });
+    return retArray;
+  },
+
+  collapseArray: function( arr ){
+    for ( var i = 0;  i < arr.length - 1 ; i++ ) {
+
+      if ( arr[i] === 'blank' ) {
+        arr[i] = arr[ i+1 ];
+        arr[i+1] = 'blank';
+      }
+
+      if ( arr[i] === arr[i+1] ) {
+        var newVal = 2 * (+arr[i]);
+        arr[i] = newVal.toString();
+        this.gameScore += newVal;
+        arr[i+1] = 'blank';
+      }
+    }
+  },
 
 };
 
@@ -95,8 +152,24 @@ var Two048Controller = {
   },
 
   setDirection: function(direction) {
-    model.setDirection(direction);
-    view.render();
+    switch ( direction ) {
+      case 'left': // Left
+        this.model.moveLeft();
+        break;
+
+      case 'up': // Up
+        this.model.moveUp();
+        break;
+
+      case 'right': // Right
+        this.model.moveRight();
+        break;
+
+      case 'down': // Down
+        this.model.moveDown();
+        break;
+    }
+    this.view.render();
   },
 
 };
