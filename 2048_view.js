@@ -1,32 +1,37 @@
 
 
-var 2048View = {
+var Two048view = {
+
+
 
   init: function() {
-    this.$grid = $('#matcher-grid');
+    this.$grid = $('#2048-grid');
     this.render();
   },
 
   render: function() {
-    this.addCardsToGrid();
-    var width = 100.0 / this.model.size - 2;
-    $('.card').css({
-      width: width + "%"
-    });
-
+    this.addTilesToGrid();
   },
 
 
-  addCardsToGrid: function() {
-    for( var i = 0; i < this.model.cards.length; i++ ) {
-      var card = this.model.cards[i];
-      var $cardDiv = $("<div> <div class='name'>" + card.value.toString() + "</div></div>");
-      $cardDiv.addClass('card');
-      $cardDiv.data( 'card-id', card.id );
-      $cardDiv.attr( 'id', 'card-' + card.id );
-      this.$grid.append($cardDiv);
+
+  addTilesToGrid: function() {
+    for( var i = 0; i < Two048Controller.numRows; i++ ) {
+      for( var j = 0; j < Two048Controller.numCols; j++ ) {
+
+        var tile = Two048Controller.model.getFromGrid( i, j);
+        var $tileDiv = $("<div><div class='tile-value'>" + tile + "</div></div>");
+        $tileDiv.addClass('tile');
+        $tileDiv.addClass(tile + '-tile');
+
+        $tileDiv.attr( 'row', i );
+        $tileDiv.attr( 'col', j );
+        this.$grid.append($tileDiv);
+      }
     }
   },
+
+
 
   updateGameView: function( ) {
     // var $gameState = $('#game-state-text');
