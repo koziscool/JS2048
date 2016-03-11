@@ -1,12 +1,12 @@
 
 .grid-container {
-  width: 80%;
+  width: 55%;
   margin: 0 auto;
 }
 
 .tile { 
   width: 23%;
-  height: 100px;
+  height: 125px;
   display: inline-block;
   box-sizing: border-box;
   border: 1px solid black;
