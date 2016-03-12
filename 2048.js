@@ -1,6 +1,5 @@
 
 
-
 var Two048Model = {
   numTiles: 16,
   numRows: 4,
@@ -11,7 +10,7 @@ var Two048Model = {
   tileValues: ['blank','2','4','8','16', '32', '64', '128', '256', '512', '1024', '2048', '4096', '8192', '16384' ],
   tiles: {},
 
-  score: 0,
+  gameScore: 0,
 
   init: function() {
     this.buildInitialGrid();
@@ -41,15 +40,18 @@ var Two048Model = {
   buildInitialGrid: function() {
     for( var i = 0; i < this.numRows; i++ ){
       for( var j = 0; j < this.numCols; j++ ) {
-        square = new this.Square(i, j, 'blank');
-        this.setTile( i, j, square );
+        // square = new this.Square(i, j, 'blank');
+        this.setTile( i, j, 'blank' );
       }
     }
 
     for( var i = 0; i < this.initialSquares; i++ ){
       var empties = this.getEmptySquares();
       var randomEmpty = empties[ Math.floor(Math.random() * empties.length) ];
-      randomEmpty.value = this.randomNewValue();
+      var row = randomEmpty.split(",")[0];
+      var col = randomEmpty.split(",")[1];
+      this.setTile( row, col, this.randomNewValue() );
+
     }    
   },
 
@@ -57,20 +59,19 @@ var Two048Model = {
     emptySquares = [];
     for( var i = 0; i < this.numRows; i++ ){
       for( var j = 0; j < this.numCols; j++ ) {
-        var tile = this.getTile(i, j);
-        if( tile.value === 'blank' ) {
-          emptySquares.push( tile );
+        if( this.getTile(i, j)=== 'blank' ) {
+          emptySquares.push( this.tileKey(i, j) );
         }
       }
     }
     return emptySquares;
   },
 
-  Square: function(row, col, value) {
-    this.row = row;
-    this.col = col;
-    this.value = value;
-  },
+  // Square: function(row, col, value) {
+  //   this.row = row;
+  //   this.col = col;
+  //   this.value = value;
+  // },
 
   addNewSquare: function() {
     var empties = this.getEmptySquares();
@@ -94,7 +95,17 @@ var Two048Model = {
       console.log(values);
       this.collapseArray( values )
       console.log(values);
+
+      for (var col = 0; col < this.numCols; col++ ){
+        if( values[col] ) {  
+          this.setTile( row,  col, values[col] );
+        } else {
+          this.setTile( row,  col, 'blank' );
+        }
+      }
+
     }
+    this.addNewSquare();
   },
 
   moveRight: function( ) {

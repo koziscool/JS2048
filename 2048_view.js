@@ -16,13 +16,14 @@ var Two048view = {
 
 
   addTilesToGrid: function() {
+    this.$grid.html("");
     for( var i = 0; i < Two048Controller.numRows; i++ ) {
       for( var j = 0; j < Two048Controller.numCols; j++ ) {
 
         var tile = Two048Controller.model.getTile( i, j);
-        var $tileDiv = $("<div><div class='tile-value'>" + tile.value + "</div></div>");
+        var $tileDiv = $("<div><div class='tile-value'>" + tile + "</div></div>");
         $tileDiv.addClass('tile');
-        $tileDiv.addClass( 'tile-' + tile.value);
+        $tileDiv.addClass( 'tile-' + tile);
 
         $tileDiv.attr( 'row', i );
         $tileDiv.attr( 'col', j );
