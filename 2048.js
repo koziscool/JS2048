@@ -77,9 +77,46 @@ var Two048Model = {
   },
 
   moveUp: function( ) {
+    for (var col = 0; col < this.numCols; col++ ){
+      values = [];
+      for (var row = 0; row < this.numCols; row++ ){
+        values.push( this.getTile( row,  col) );
+      }
+
+      values = this.stripBlanks( values )
+      this.collapseArray( values )
+
+      for (var row = 0; row < this.numCols; row++ ){
+        if( values[row] ) {  
+          this.setTile( row,  col, values[row] );
+        } else {
+          this.setTile( row,  col, 'blank' );
+        }
+      }
+    }
+    this.addNewSquare();
   },
 
   moveDown: function( ) {
+    for (var col = 0; col < this.numCols; col++ ){
+      values = [];
+      for (var row = 0; row < this.numCols; row++ ){
+        values.push( this.getTile( row,  col) );
+      }
+
+      values = this.stripBlanks( values )
+      this.collapseArray( values )
+
+      console.log(values);
+      for (var row =  this.numRows - 1; row >= 0; row-- ){
+        if( values[this.numRows - 1 - row] ) {  
+          this.setTile( row,  col, values[this.numRows - 1 - row] );
+        } else {
+          this.setTile( row,  col, 'blank' );
+        }
+      }
+    }
+    this.addNewSquare();
   },
 
   moveLeft: function( ) {
@@ -114,9 +151,7 @@ var Two048Model = {
       values = this.stripBlanks( values )
       this.collapseArray( values )
 
-      console.log(values);
       for (var col = this.numCols - 1; col >= 0; col-- ){
-
         if( values[this.numCols - 1 - col] ) {  
           this.setTile( row,  col, values[this.numCols - 1 - col] );
         } else {
