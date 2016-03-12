@@ -62,12 +62,6 @@ var Two048Model = {
     return emptySquares;
   },
 
-  // Square: function(row, col, value) {
-  //   this.row = row;
-  //   this.col = col;
-  //   this.value = value;
-  // },
-
   addNewSquare: function() {
     var empties = this.getEmptySquares();
     var randomEmpty = empties[ Math.floor(Math.random() * empties.length) ];
@@ -105,11 +99,9 @@ var Two048Model = {
         values.push( this.getTile( row,  col) );
       }
 
-      console.log(values);
       values = this.stripBlanks( values )
       this.collapseArray( values )
 
-      console.log(values);
       for (var row = this.numRows - 1; row >= 0; row-- ){
         if( values[this.numRows - 1 - row] ) {  
           this.setTile( row,  col, values[ this.numRows - 1 - row]  );
