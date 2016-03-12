@@ -98,19 +98,21 @@ var Two048Model = {
   },
 
   moveDown: function( ) {
+    console.log('move down');
     for (var col = 0; col < this.numCols; col++ ){
       values = [];
-      for (var row = 0; row < this.numCols; row++ ){
+      for (var row = this.numCols  - 1; row >= 0; row-- ){
         values.push( this.getTile( row,  col) );
       }
 
+      console.log(values);
       values = this.stripBlanks( values )
       this.collapseArray( values )
 
       console.log(values);
-      for (var row =  this.numRows - 1; row >= 0; row-- ){
+      for (var row = this.numRows - 1; row >= 0; row-- ){
         if( values[this.numRows - 1 - row] ) {  
-          this.setTile( row,  col, values[this.numRows - 1 - row] );
+          this.setTile( row,  col, values[ this.numRows - 1 - row]  );
         } else {
           this.setTile( row,  col, 'blank' );
         }
