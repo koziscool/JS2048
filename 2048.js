@@ -46,12 +46,12 @@ var Two048Model = {
     }
 
     for( var i = 0; i < this.initialSquares; i++ ){
-      var empties = this.getEmptySquares();
-      var randomEmpty = empties[ Math.floor(Math.random() * empties.length) ];
-      var row = randomEmpty.split(",")[0];
-      var col = randomEmpty.split(",")[1];
-      this.setTile( row, col, this.randomNewValue() );
-
+      // var empties = this.getEmptySquares();
+      // var randomEmpty = empties[ Math.floor(Math.random() * empties.length) ];
+      // var row = randomEmpty.split(",")[0];
+      // var col = randomEmpty.split(",")[1];
+      // this.setTile( row, col, this.randomNewValue() );
+      this.addNewSquare();
     }    
   },
 
@@ -76,7 +76,9 @@ var Two048Model = {
   addNewSquare: function() {
     var empties = this.getEmptySquares();
     var randomEmpty = empties[ Math.floor(Math.random() * empties.length) ];
-    randomEmpty.value = this.randomNewValue();
+    var row = randomEmpty.split(",")[0];
+    var col = randomEmpty.split(",")[1];
+    this.setTile( row, col, this.randomNewValue() );
   },
 
   moveUp: function( ) {
@@ -89,7 +91,7 @@ var Two048Model = {
     for (var row = 0; row < this.numRows; row++ ){
       values = [];
       for (var col = 0; col < this.numCols; col++ ){
-        values.push( this.getTile( row,  col).value );
+        values.push( this.getTile( row,  col) );
       }
       values = this.stripBlanks( values )
       console.log(values);
@@ -103,8 +105,8 @@ var Two048Model = {
           this.setTile( row,  col, 'blank' );
         }
       }
-
     }
+
     this.addNewSquare();
   },
 
