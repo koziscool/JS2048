@@ -157,7 +157,7 @@ var Two048Model = {
     this.addNewSquare();
   },
 
-////////
+////
 
   notABlank: function( elt ) { 
     var retVal = ( elt != 'blank');
